@@ -1,0 +1,81 @@
+{
+	"rules":
+	[
+		{
+		"if": ["and",["fact_not_exist", "speed_track"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Ездите по скоростным трассам?"],["assign", "speed_track", "input" ]]
+		},
+		{
+		"if": ["and",["fact_not_exist", "chast_poezd"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Часто ездите?"], ["assign", "chast_poezd", "input"]]
+		},
+		{
+		"if": ["and",["fact_not_exist", "sport+"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Желаемый режим езды sport+?"],["assign", "sport+", "input" ]]
+		},
+		{
+		"if": ["and",["fact_not_exist", "long_way"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Долгие поездки? "],["assign", "long_way", "input"]]
+		},
+		{
+		"if": ["and", ["equal", "chast_poezd", false], ["equal", "long_way", false], ["fact_not_exist", "probeg"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужен пробег 75км\n"],["assign", "probeg", 75000]]
+		},
+		{
+		"if": ["and", ["equal", "chast_poezd", true], ["equal", "long_way", true], ["fact_not_exist", "probeg"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужен пробег 300км\n"],["assign", "probeg", 300000]]
+		},
+		{
+		"if": ["and", ["or",["equal", "chast_poezd", true], ["equal", "long_way", true]], ["fact_not_exist", "probeg"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужен пробег 150км\n"],["assign", "probeg", 150000]]
+		},
+		{
+		"if": ["and", ["equal", "sport+", true], ["equal", "speed_track", false], ["fact_not_exist", "speed"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужена нужна скорость 100км/ч\n"],["assign", "speed", 100]]
+		},
+		{
+		"if": ["and", ["equal", "sport+", true], ["equal", "speed_track", true], ["fact_not_exist", "speed"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужена нужна скорость 140км/ч\n"],["assign", "speed", 140]]
+		},
+		{
+		"if": ["and",["equal", "sport+", false], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужена нужна скорость 60 км/ч\n"],["assign", "speed", 60]]
+		},
+		{
+		"if": ["and", ["equal", "probeg", 75000], ["equal", "speed", 140], ["fact_not_exist", "solution"]],
+		"action": [["print", "mazda cx5!\n"],["assign", "solution", true]]
+		},
+		{
+		"if": ["and", ["equal", "probeg", 300000], ["equal", "speed", 140], ["fact_not_exist", "solution"]],
+		"action": [["print", "mitsubishi lanser!\n"],["assign", "solution", true]]
+		},
+		{
+		"if": ["and", ["or",["equal", "probeg", 75000], ["equal", "speed", 100]], ["fact_not_exist", "marka"], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужена toyota "],["assign", "marka", "toyota"]]
+		},
+		{
+		"if": ["and",["equal", "speed", 60], ["fact_not_exist", "solution"]],
+		"action": [["print", "Вам нужна daewoo "],["assign", "marka", "daewoo"]]
+		},
+		{
+		"if": ["and", ["equal", "probeg", 150000], ["equal", "marka", "daewoo"], ["fact_not_exist", "solution"]],
+		"action": [["print", "lanos!\n"],["assign", "solution", true]]
+		},
+		{
+		"if": ["and", ["equal", "probeg", 300000], ["equal", "marka", "daewoo"], ["fact_not_exist", "solution"]],
+		"action": [["print", "nexia!\n"],["assign", "solution", true]]
+		},
+		{
+		"if": ["and", ["equal", "probeg", 150000], ["equal", "marka", "toyota"], ["fact_not_exist", "solution"]],
+		"action": [["print", "camry!\n"],["assign", "solution", true]]
+		},
+		{
+		"if": ["and", ["equal", "probeg", 300000], ["equal", "marka", "toyota"], ["fact_not_exist", "solution"]],
+		"action": [["print", "corolla!\n"],["assign", "solution", true]]
+		},
+		{
+		"if": ["and", ["equal", "speed", 140], ["equal", "marka", "toyota"], ["fact_not_exist", "solution"]],
+		"action": [["print", "mark!\n"],["assign", "solution", true]]
+		}
+	]
+}
